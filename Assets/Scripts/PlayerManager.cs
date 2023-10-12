@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (drunkLevel > 0)
         {
-            drunkLevel -= 0.1f;
+            //drunkLevel -= 0.1f;
         } else if (health > 0)
         {
             health -= 0.2f;
@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
         {
             Dead();
         }
-        print("\n health: " + health + " drunkLevel: " + drunkLevel);
+        //print("\n health: " + health + " drunkLevel: " + drunkLevel);
     }
     private void Dead()
     {
