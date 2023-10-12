@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    void OnTriggerEnter2D(UnityEngine.Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Win")
         {
