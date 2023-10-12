@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     private GameObject player;
     [SerializeField] float initialDrunkLevel;
-    private float drunkLevel;
+    public float drunkLevel;
     private float health;
     void Start()
     {
