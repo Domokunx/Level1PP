@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754bfe99ea113ba4eaa3734ac249b114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 100
   rb: {fileID: 1284775538}
 --- !u!212 &1284775536
 SpriteRenderer:
@@ -527,7 +527,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193afa409d6f0a0459911b2bd6933171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialDrunkLevel: 10
+  initialDrunkLevel: 200
+  drunkLevel: 0
 --- !u!1 &1995356423
 GameObject:
   m_ObjectHideFlags: 0
