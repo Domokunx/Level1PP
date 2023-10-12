@@ -16,7 +16,9 @@ public class WinCondition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(inWinArea && playerManager.drunkLevel > 100)
+
+        print(inWinArea + "" + playerManager.drunkLevel);
+        if (inWinArea && playerManager.drunkLevel > 0 )
         {
             Win();
         }
@@ -25,7 +27,7 @@ public class WinCondition : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(UnityEngine.Collider2D other)
     {
         if (other.tag == "Win")
         {
@@ -33,7 +35,7 @@ public class WinCondition : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Win")
         {
