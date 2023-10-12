@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     private GameObject player;
     [SerializeField] float initialDrunkLevel;
     public float drunkLevel;
-    private float health;
+    public float health;
     void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (drunkLevel > 0)
         {
-            //drunkLevel -= 0.1f;
+            drunkLevel -= 0.001f;
         } else if (health > 0)
         {
             health -= 0.2f;
