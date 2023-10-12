@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WinCondition : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
     PlayerManager playerManager;
@@ -27,7 +27,7 @@ public class WinCondition : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    void OnTriggerEnter2D(UnityEngine.Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Win")
         {
