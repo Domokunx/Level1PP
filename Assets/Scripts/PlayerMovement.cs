@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
-        playerManager = (PlayerManager)player.GetComponent("PlayerManager");
+        playerManager = player.GetComponent<PlayerManager>();
     }
     private void Update()
     {
