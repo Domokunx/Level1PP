@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            tumble = Random.Range(95, 200) < playerManager.drunkLevel;
+            tumble = Random.Range(playerManager.drunkLevel, 200) > Random.Range(0, 200)*25;
             if (tumble)
             {
                 SetTumbleDirection();
@@ -65,6 +65,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Tumble()
     {
-        rb.velocity = new Vector2(tumbleDirection.x * playerManager.drunkLevel * 0.01f, tumbleDirection.y * playerManager.drunkLevel * 0.01f);
+        rb.velocity = new Vector2(tumbleDirection.x * playerManager.drunkLevel * 0.005f, tumbleDirection.y * playerManager.drunkLevel * 0.005f);
     }
 }
