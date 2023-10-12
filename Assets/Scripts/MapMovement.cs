@@ -12,13 +12,15 @@ public class MapMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("CheckRotation", 0, 3f);
         pm = target.GetComponent<PlayerManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckRotation();
+          
+
         SwayScreen();
     }
 
@@ -35,12 +37,9 @@ public class MapMovement : MonoBehaviour
         }
     }
 
-    private void CheckRotation()
+   void CheckRotation()
     {
-        if (counter++ == 20)
-        {
-            rotateLeft = !rotateLeft;
-            counter = 0;
-        }
+        rotateLeft = !rotateLeft;
+        return;
     }
 }
