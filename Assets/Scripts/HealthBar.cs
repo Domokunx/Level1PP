@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    private float maxHealth = 100f;
-    private Slider healthBar;
-    void Start()
+    public Slider healthBar;
+    
+    public void SetMaxHealth(float hp)
     {
-        healthBar = GetComponent<Slider>();
-        healthBar.maxValue = maxHealth;
+        healthBar.maxValue = hp;
+        healthBar.value = hp;
+    }
+    
+    public void SetHealth(float hp)
+    {
+        healthBar.value = hp;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        healthBar.value = PlayerManager.health;
-    }
 }
