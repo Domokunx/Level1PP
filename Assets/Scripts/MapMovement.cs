@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class MapMovement : MonoBehaviour
-{
+public class MapMovement : MonoBehaviour { 
     PlayerManager pm;
-    int counter;
     bool rotateLeft;
     public GameObject target;
     // Start is called before the first frame update
