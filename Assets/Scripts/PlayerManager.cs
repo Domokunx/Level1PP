@@ -1,40 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-    private GameObject player;
     [SerializeField] float initialDrunkLevel;
     public float drunkLevel;
     public float maxHealth = 100f;
     public float currentHealth;
-    public HealthBar healthBar;
+    public Slider healthBar;
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
         drunkLevel = initialDrunkLevel;
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        healthBar.maxValue = maxHealth;
+        healthBar.value = maxHealth;
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        healthBar.value = currentHealth;
     }
     public void Heal(float health)
     {
         currentHealth += health;
-        healthBar.SetHealth(currentHealth);
+        healthBar.value = health;
     }
     private void FixedUpdate()
     {
         if (currentHealth > 100)
         {
             currentHealth = 100;
-            healthBar.SetHealth(currentHealth);
+            healthBar.value = currentHealth;
         }
         if (drunkLevel > 0)
         {
