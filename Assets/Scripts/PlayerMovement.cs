@@ -6,20 +6,22 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D rb;
+    public Animator anim;
+
+    private SpriteRenderer spriteRenderer;
     private Vector2 moveDirection;
     private Vector2 tumbleDirection;
-    private GameObject player;
     private PlayerManager playerManager;
     private bool tumble;
     private float tumbleTime;
     private void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        playerManager = player.GetComponent<PlayerManager>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        playerManager = GetComponent<PlayerManager>();
     }
     private void Update()
     {
-        ProcessInput(); 
+        ProcessInput();
     }
     private void FixedUpdate()
     {
@@ -44,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
             }
             Move();
         }
+
     }
 
     private void ProcessInput()
@@ -51,9 +54,21 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(moveX, moveY).normalized;
+        if (Vector2.Equals(moveDirection, Vector2.zero))
+        {
+            anim.SetBool("isMoving", false);
+        }
     }
     private void Move()
     {
+        anim.SetBool("isMoving", true);
+        if (moveDirection.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (moveDirection.x < 0) { 
+            spriteRenderer.flipX = true; 
+        }
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
     private void SetTumbleDirection()

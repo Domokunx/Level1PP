@@ -5,16 +5,21 @@ public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
     PlayerManager playerManager;
+    public GameObject gameOverScreen;
     bool inWinArea;
     void Start()
     {
+        gameOverScreen.SetActive(false);
         playerManager = GetComponent<PlayerManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (playerManager.currentHealth <= 0)
+        {
+            gameOverScreen.SetActive(true);
+        }
         print(inWinArea + "" + playerManager.drunkLevel);
         if (inWinArea && playerManager.drunkLevel > 0 )
         {

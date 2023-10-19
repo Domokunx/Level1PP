@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
@@ -8,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     public float drunkLevel;
     public float maxHealth = 100f;
     public float currentHealth;
+
     public Slider healthBar;
     void Start()
     {
@@ -15,17 +15,6 @@ public class PlayerManager : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        currentHealth -= damage;
-        healthBar.value = currentHealth;
-    }
-    public void Heal(float health)
-    {
-        currentHealth += health;
-        healthBar.value = health;
     }
     private void FixedUpdate()
     {
@@ -37,17 +26,22 @@ public class PlayerManager : MonoBehaviour
         if (drunkLevel > 0)
         {
             drunkLevel -= 0.001f;
-        } else if (currentHealth > 0)
+        }
+        else if (currentHealth > 0)
         {
             TakeDamage(0.2f);
-        } else
-        {
-            Dead();
         }
         //print("\n health: " + currentHealth + " drunkLevel: " + drunkLevel);
     }
-    private void Dead()
+
+    public void TakeDamage(float damage)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        currentHealth -= damage;
+        healthBar.value = currentHealth;
+    }
+    public void Heal(float health)
+    {
+        currentHealth += health;
+        healthBar.value = health;
     }
 }
