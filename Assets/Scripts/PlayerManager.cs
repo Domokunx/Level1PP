@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     public float drunkLevel;
     public float maxHealth = 100f;
     public float currentHealth;
+    public List<string> inventory;
 
     public Slider healthBar;
     void Start()
@@ -15,6 +17,8 @@ public class PlayerManager : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
+        inventory = new List<string>();
+
     }
     private void FixedUpdate()
     {
@@ -43,5 +47,18 @@ public class PlayerManager : MonoBehaviour
     {
         currentHealth += health;
         healthBar.value = health;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Collectible"))
+        {
+            string itemType = collision.gameObject.GetComponent<BottleScript>().itemType;
+            print("we have collected a :" + itemType);
+
+            inventory.Add(itemType);
+            print("Inventory length:" + inventory.Count);
+            Destroy(collision.gameObject);
+        }
     }
 }
