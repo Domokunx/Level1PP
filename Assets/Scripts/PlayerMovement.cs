@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
             if (tumble)
             {
                 SetTumbleDirection();
-                tumbleTime = playerManager.drunkLevel * 50f;
+                tumbleTime = playerManager.drunkLevel * 2f;
             }
             Move();
         }
