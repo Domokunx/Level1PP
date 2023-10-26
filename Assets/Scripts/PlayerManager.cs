@@ -53,10 +53,12 @@ public class PlayerManager : MonoBehaviour
         healthBar.value = health;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        print("Detected Collider");
         if (collision.CompareTag("Collectible"))
         {
+            
             string itemType = collision.gameObject.GetComponent<BottleScript>().itemType;
             print("we have collected a :" + itemType);
 
