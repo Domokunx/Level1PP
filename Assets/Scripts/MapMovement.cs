@@ -8,6 +8,7 @@ public class MapMovement : MonoBehaviour {
     bool rotateLeft;
     public GameObject target;
 
+    private float currIntensity;
     public Volume volume;
     LensDistortion ld;
     // Start is called before the first frame update
@@ -31,10 +32,14 @@ public class MapMovement : MonoBehaviour {
     {
         if (rotateLeft)
         {
+            currIntensity = ld.intensity.GetValue<float>() + 0.5f;
+            ld.intensity.Override(currIntensity);
             transform.RotateAround(target.transform.position, Vector3.forward, 20 * Time.deltaTime * pm.drunkLevel);
         }
         else
         {
+            currIntensity = ld.intensity.GetValue<float>() - 0.5f;
+            ld.intensity.Override(currIntensity);
             transform.RotateAround(target.transform.position, Vector3.forward, 20 * -Time.deltaTime * pm.drunkLevel);
         }
     }

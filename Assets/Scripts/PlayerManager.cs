@@ -11,9 +11,12 @@ public class PlayerManager : MonoBehaviour
     public List<string> inventory;
 
     public Slider healthBar;
+    public Slider drunkBar;
     void Start()
     {
         drunkLevel = initialDrunkLevel;
+        drunkBar.maxValue = 10;
+        drunkBar.minValue = 0;
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
@@ -30,6 +33,7 @@ public class PlayerManager : MonoBehaviour
         if (drunkLevel > 0)
         {
             drunkLevel -= 0.001f;
+            drunkBar.value = drunkLevel;
         }
         else if (currentHealth > 0)
         {
