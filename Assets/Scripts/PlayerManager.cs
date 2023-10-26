@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
         }
         if (drunkLevel > 0)
         {
-            drunkLevel -= 0.001f;
+            drunkLevel -= 0.005f;
             drunkBar.value = drunkLevel;
         }
         else if (currentHealth > 0)
