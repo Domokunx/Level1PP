@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        ProcessInput();
+        if (!tumble) ProcessInput();
     }
     private void FixedUpdate()
     {
@@ -38,11 +38,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            tumble = Random.Range(playerManager.drunkLevel, 200) > Random.Range(0, 200)*25;
+            tumble = Random.Range(playerManager.drunkLevel*100, 200) > Random.Range(0, 200)*25;
             if (tumble)
             {
                 SetTumbleDirection();
-                tumbleTime = playerManager.drunkLevel * 0.1f;
+                tumbleTime = playerManager.drunkLevel * 50f;
             }
             Move();
         }
@@ -80,6 +80,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Tumble()
     {
-        rb.velocity = new Vector2(tumbleDirection.x * playerManager.drunkLevel * 0.005f, tumbleDirection.y * playerManager.drunkLevel * 0.005f);
+        rb.velocity = new Vector2(tumbleDirection.x * playerManager.drunkLevel*0.5f, tumbleDirection.y * playerManager.drunkLevel * 0.5f);
     }
 }
