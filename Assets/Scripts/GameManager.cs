@@ -20,16 +20,10 @@ public class GameManager : MonoBehaviour
     {
         if (playerManager.currentHealth <= 0)
         {
-<<<<<<< Updated upstream
             Dead();
-=======
-<<<<<<< HEAD
             gameOver = true;
             gameOverScreen.SetActive(true);
-=======
             Dead();
->>>>>>> cd7c8e2b2843066d0a8405acab4ed3002b97c394
->>>>>>> Stashed changes
         }
         print(inWinArea + "" + playerManager.drunkLevel);
         if (inWinArea && playerManager.drunkLevel > 0 )
