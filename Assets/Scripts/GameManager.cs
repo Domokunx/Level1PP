@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameOverScreen.SetActive(false);
-        playerManager = GetComponent<PlayerManager>();
+        playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerManager.currentHealth <= 0)
         {
-            gameOverScreen.SetActive(true);
+            Dead();
         }
         print(inWinArea + "" + playerManager.drunkLevel);
         if (inWinArea && playerManager.drunkLevel > 0 )
@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
     void Win()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void Dead() 
+    {
+        gameOverScreen.SetActive(true);
     }
     void OnTriggerEnter2D(Collider2D other)
     {
