@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] float initialDrunkLevel;
     public float drunkLevel;
+    public float maxDrunkLevel = 10f;
     public float maxHealth = 100f;
     public float currentHealth;
     public List<BottleScript.BottleType> inventory;
@@ -30,14 +31,17 @@ public class PlayerManager : MonoBehaviour
             currentHealth = 100;
             healthBar.value = currentHealth;
         }
+        if (drunkLevel > maxDrunkLevel)
+        {
+            drunkLevel = maxDrunkLevel;
+        }
         if (drunkLevel > 0)
         {
             drunkLevel -= 0.005f;
             drunkBar.value = drunkLevel;
-        }
-        else if (currentHealth > 0)
+        } else if (currentHealth > 0)
         {
-            TakeDamage(0.2f);
+            TakeDamage(0.1f);
         }
         //print("\n health: " + currentHealth + " drunkLevel: " + drunkLevel);
     }
@@ -64,21 +68,14 @@ public class PlayerManager : MonoBehaviour
 
             if (itemType == BottleScript.BottleType.Beer)
             {
-                drunkLevel += 2.5f;
+                drunkLevel += 4f;
             } else if (itemType == BottleScript.BottleType.Water)
             {
                 if (drunkLevel >= 0f)
                 {
                     drunkLevel -= 1f;
                 }
-                if (currentHealth <= 75f)
-                {
-                    currentHealth += 25f;
-                } else
-                {
-                    currentHealth = maxHealth;
-                }
-                
+                currentHealth += 25f;
             }
 
             inventory.Add(itemType);
