@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            tumble = Random.Range(playerManager.drunkLevel*100, 200) > Random.Range(0, 200)*25;
+            tumble = Random.Range(playerManager.drunkLevel*100, 200) > Random.Range(0, 200)*40;
             if (tumble)
             {
                 SetTumbleDirection();
