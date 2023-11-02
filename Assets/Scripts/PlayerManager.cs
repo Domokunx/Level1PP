@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     public float drunkLevel;
     public float maxHealth = 100f;
     public float currentHealth;
-    public List<string> inventory;
+    public List<BottleScript.BottleType> inventory;
 
     public Slider healthBar;
     public Slider drunkBar;
@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
-        inventory = new List<string>();
+        inventory = new List<BottleScript.BottleType> ();
 
     }
     private void FixedUpdate()
@@ -59,8 +59,27 @@ public class PlayerManager : MonoBehaviour
         if (collision.CompareTag("Collectible"))
         {
             
-            string itemType = collision.gameObject.GetComponent<BottleScript>().itemType;
+            BottleScript.BottleType itemType = collision.gameObject.GetComponent<BottleScript>().itemType;
             print("we have collected a :" + itemType);
+
+            if (itemType == BottleScript.BottleType.Beer)
+            {
+                drunkLevel += 2.5f;
+            } else if (itemType == BottleScript.BottleType.Water)
+            {
+                if (drunkLevel >= 0f)
+                {
+                    drunkLevel -= 1f;
+                }
+                if (currentHealth <= 75f)
+                {
+                    currentHealth += 25f;
+                } else
+                {
+                    currentHealth = maxHealth;
+                }
+                
+            }
 
             inventory.Add(itemType);
             print("Inventory length:" + inventory.Count);
