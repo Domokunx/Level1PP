@@ -75,7 +75,7 @@ public class PlayerManager : MonoBehaviour
                 {
                     drunkLevel -= 1f;
                 }
-                currentHealth += 25f;
+                Heal(25f);
             }
 
             inventory.Add(itemType);

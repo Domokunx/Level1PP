@@ -21,7 +21,7 @@ public class CarControl : MonoBehaviour
         }
         else if (dir == Direction.West)
         {
-            gameObject.transform.Rotate(new Vector3(0, 0, 180));
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 

@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.4, y: -2.7, z: 0}
-  m_LocalScale: {x: 13.965792, y: 13.327103, z: 3.6511874}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -118,9 +118,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDrunkLevel: 1
   drunkLevel: 2
+  maxDrunkLevel: 10
   maxHealth: 100
   currentHealth: 0
+  inventory: 
   healthBar: {fileID: 0}
+  drunkBar: {fileID: 0}
 --- !u!50 &2494108949413024647
 Rigidbody2D:
   serializedVersion: 4
