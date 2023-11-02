@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
                 SetTumbleDirection();
                 tumbleTime = playerManager.drunkLevel * 2f;
             }
-            Move();
+            if (playerManager.currentHealth>0) Move();
         }
 
     }
