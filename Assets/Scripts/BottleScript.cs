@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BottleScript : MonoBehaviour
 {
-   public string itemType;
+    public enum BottleType {Beer, Water};
+    public BottleType itemType;
 
 }
