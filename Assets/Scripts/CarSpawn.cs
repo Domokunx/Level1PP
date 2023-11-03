@@ -28,6 +28,5 @@ public class CarSpawn : MonoBehaviour
     {
         car.GetComponent<CarControl>().dir = spawnDir;
         Instantiate(car, transform.position, Quaternion.identity);
-        Destroy(car, 20f);
     }
 }

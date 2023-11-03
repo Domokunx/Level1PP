@@ -11,6 +11,7 @@ public class CarControl : MonoBehaviour
 
     void Start()
     {
+        Destroy(gameObject, 20f);
         rb = gameObject.GetComponent<Rigidbody2D>();
         if (dir == Direction.North)
         {

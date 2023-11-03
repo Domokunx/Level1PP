@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 8936702702022801702, guid: e461f0ac9be5cba429cb5a40ee51bb05, type: 3}
-  spawnDir: 0
+  spawnDir: 1

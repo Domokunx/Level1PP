@@ -13,8 +13,11 @@ public class PlayerManager : MonoBehaviour
 
     public Slider healthBar;
     public Slider drunkBar;
+
+    ScoreManager scoreManager;
     void Start()
     {
+        scoreManager = FindAnyObjectByType<ScoreManager>();
         drunkLevel = initialDrunkLevel;
         drunkBar.maxValue = 10;
         drunkBar.minValue = 0;
@@ -62,7 +65,7 @@ public class PlayerManager : MonoBehaviour
         print("Detected Collider");
         if (collision.CompareTag("Collectible"))
         {
-            
+            scoreManager.AddScore(1);
             BottleScript.BottleType itemType = collision.gameObject.GetComponent<BottleScript>().itemType;
             print("we have collected a :" + itemType);
 
