@@ -13,19 +13,18 @@ public class ScoreManager : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text highscoreText;
 
-    public int currentScore;
-    public int highscore = 0;
+    public int currentScore = 0;
+    public int highscore;
 
     private void Awake()
     {
         instance = this;
     }
-    void Start()
+    void Update()
     {
-        PlayerPrefs.GetInt("highscore", 0);
-        currentScore = 0;
+        highscore = PlayerPrefs.GetInt("highscore");
         scoreText.text = "Score: " + currentScore.ToString();
-        highscoreText.text = "High score: " + highscore.ToString();
+        highscoreText.text = "High score: " + PlayerPrefs.GetInt("highscore");
 
     }
 
@@ -35,6 +34,7 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = "Score: " + currentScore.ToString();
         if (currentScore > highscore)
         {
+            highscore = currentScore;
             PlayerPrefs.SetInt("highscore", currentScore);
         }
     }

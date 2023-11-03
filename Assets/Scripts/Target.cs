@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Target : MonoBehaviour
 {
+    public GameObject winScreen;
     bool inWinArea;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class Target : MonoBehaviour
 
     void Win()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        winScreen.SetActive(true);
     }
     void OnTriggerEnter2D(Collider2D other)
     {
