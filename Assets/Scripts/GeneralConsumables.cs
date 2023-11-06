@@ -13,6 +13,7 @@ public class GeneralConsumables : MonoBehaviour
     {
         Instantiate(item, spawnpos);
     }
+    // Might be Unnecessary
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -34,10 +35,11 @@ public class GeneralConsumables : MonoBehaviour
         spawnConsumable(consumables[nextSpawnConsumable], spawnPoints[nextSpawnLocation].transform);
         yield return new WaitForSeconds(consumableSpawnTimer);
         
-        if (!GameManager.gameOver)
-        {
-            StartCoroutine(consumableSpawnRoutine());
-        }
+        // Not sure if needed
+        //if (!GameManager.gameOver)
+        //{
+        //    StartCoroutine(consumableSpawnRoutine());
+        //}
     }
     // Update is called once per frame
     void Update()
