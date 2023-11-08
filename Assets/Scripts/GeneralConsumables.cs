@@ -6,12 +6,13 @@ public class GeneralConsumables : MonoBehaviour
 {
 
     public GameObject[] consumables;
-    public GameObject[] spawnPoints;
-    float consumableSpawnTimer = 5f;
+    public Transform[] spawnPoints;
+    float consumableSpawnTimer = 2f;
+    float nextSpawnTime;
 
     public void spawnConsumable(GameObject item, Transform spawnpos)
     {
-        Instantiate(item, spawnpos);
+        Instantiate(item, spawnpos.position, spawnpos.rotation);
     }
     // Might be Unnecessary
     private void OnCollisionEnter2D(Collision2D collision)
@@ -21,29 +22,19 @@ public class GeneralConsumables : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     private void Start()
     {
-        StartCoroutine(consumableSpawnRoutine());
+        nextSpawnTime = Time.fixedTime;
     }
 
-    public IEnumerator consumableSpawnRoutine()
+    private void Update()
     {
-        
-        int nextSpawnLocation = Random.Range(0, spawnPoints.Length);
-        int nextSpawnConsumable = Random.Range(0, consumables.Length);
-        spawnConsumable(consumables[nextSpawnConsumable], spawnPoints[nextSpawnLocation].transform);
-        yield return new WaitForSeconds(consumableSpawnTimer);
-        
-        // Not sure if needed
-        //if (!GameManager.gameOver)
-        //{
-        //    StartCoroutine(consumableSpawnRoutine());
-        //}
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (nextSpawnTime <= Time.fixedTime)
+        {
+            int nextSpawnLocation = Random.Range(0, spawnPoints.Length);
+            int nextSpawnConsumable = Random.Range(0, consumables.Length);
+            spawnConsumable(consumables[nextSpawnConsumable], spawnPoints[nextSpawnLocation]);
+            nextSpawnTime += consumableSpawnTimer;
+        }
     }
 }

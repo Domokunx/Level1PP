@@ -6,24 +6,36 @@ using UnityEngine.Rendering.Universal;
 public class MapMovement : MonoBehaviour { 
     PlayerManager pm;
     bool rotateLeft;
-    public GameObject target;
+    public GameObject player;
+    public GameObject map;
 
     private float currIntensity;
     public Volume volume;
-    LensDistortion ld;
+    VolumeProfile profile;
+    LensDistortion LD;
+
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("CheckRotation", 0, 3f);
-        pm = target.GetComponent<PlayerManager>();
-        ld = volume.GetComponent<LensDistortion>();
+        pm = FindAnyObjectByType<PlayerManager>();
+        profile = volume.sharedProfile;
+        if (!profile.TryGet<LensDistortion>(out var ld)) {
+            ld = profile.Add<LensDistortion>(false);
+        }
+
+        ld.intensity.overrideState = true;
+        ld.intensity.value = 0;
+        LD = ld;
     }
 
     // Update is called once per frame
     void Update()
     {
-          
-
+        if (pm.drunkLevel == 0)
+        {
+            LD.intensity.value = 0;         
+        }
         SwayScreen();
     }
 
@@ -32,15 +44,15 @@ public class MapMovement : MonoBehaviour {
     {
         if (rotateLeft)
         {
-            currIntensity = ld.intensity.GetValue<float>() + 0.5f;
-            ld.intensity.Override(currIntensity);
-            transform.RotateAround(target.transform.position, Vector3.forward, 20 * Time.deltaTime * pm.drunkLevel);
+            currIntensity = LD.intensity.GetValue<float>() + 0.01f * pm.drunkLevel;
+            LD.intensity.value = Mathf.Clamp(currIntensity, 0, 0.2f);
+            map.transform.RotateAround(player.transform.position, Vector3.forward, 20 * Time.deltaTime * pm.drunkLevel);
         }
         else
         {
-            currIntensity = ld.intensity.GetValue<float>() - 0.5f;
-            ld.intensity.Override(currIntensity);
-            transform.RotateAround(target.transform.position, Vector3.forward, 20 * -Time.deltaTime * pm.drunkLevel);
+            currIntensity = LD.intensity.GetValue<float>() - 0.01f * pm.drunkLevel;
+            LD.intensity.value = Mathf.Clamp(currIntensity, -0.2f, 0);
+            map.transform.RotateAround(player.transform.position, Vector3.forward, 20 * -Time.deltaTime * pm.drunkLevel);
         }
     }
 
