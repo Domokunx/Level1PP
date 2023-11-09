@@ -45,14 +45,14 @@ public class MapMovement : MonoBehaviour {
         if (rotateLeft)
         {
             currIntensity = LD.intensity.GetValue<float>() + 0.01f * pm.drunkLevel;
-            LD.intensity.value = Mathf.Clamp(currIntensity, 0, 0.2f);
-            map.transform.RotateAround(player.transform.position, Vector3.forward, 20 * Time.deltaTime * pm.drunkLevel);
+            LD.intensity.value = Mathf.Clamp(currIntensity, 0, 0.3f);
+            map.transform.RotateAround(player.transform.position, Vector3.forward, 20 * Time.deltaTime * Mathf.Log10(1 + pm.drunkLevel));
         }
         else
         {
             currIntensity = LD.intensity.GetValue<float>() - 0.01f * pm.drunkLevel;
-            LD.intensity.value = Mathf.Clamp(currIntensity, -0.2f, 0);
-            map.transform.RotateAround(player.transform.position, Vector3.forward, 20 * -Time.deltaTime * pm.drunkLevel);
+            LD.intensity.value = Mathf.Clamp(currIntensity, -0.3f, 0);
+            map.transform.RotateAround(player.transform.position, Vector3.forward, 20 * -Time.deltaTime * Mathf.Log10(1 + pm.drunkLevel));
         }
     }
 
